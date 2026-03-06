@@ -1,3 +1,5 @@
+REPOSITIORY STRUCTURE
+
 plexamp-raspberry-pi-install/
 ├── README.md
 ├── install-plexamp-appliance.sh
