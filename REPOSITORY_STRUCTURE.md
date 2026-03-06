@@ -1,11 +1,9 @@
-plexamp-pi-appliance/
+plexamp-raspberry-pi-install/
 ├── README.md
-├── LICENSE
-├── .gitignore
 ├── install-plexamp-appliance.sh
-├── docs/
-│   ├── architecture.md
-│   ├── hardware.md
-│   └── troubleshooting.md
-└── screenshots/
-    └── plexamp-kiosk.png
+├── architecture.md
+├── hardware.md
+├── troubleshooting.md
+├── troubleshooting_dac_not_detected.md
+├── troubleshooting_kiosk_blank_screen.md
+└── troubleshooting_plexamp_service_issues.md
