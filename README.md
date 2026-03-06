@@ -12,10 +12,8 @@ Features:
   - Control from phone/tablet
 
 Boot flow:
-  Pi Boot  
-  → Plexamp service starts  
-  → Chromium kiosk launches  
-  → Plexamp UI appears  
+  Pi Boot → Plexamp service starts → Chromium kiosk launches → Plexamp UI appears  
+  
 ---
 
 Instructions for the install. 
