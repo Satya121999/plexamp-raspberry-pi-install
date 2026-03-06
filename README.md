@@ -46,7 +46,7 @@ Access:
 - http://PlexPie.local:32500
 
 Notes
-- Plug in your USB DAC before running the installer if you want auto-detection.
+- Very Important: Plug in your USB DAC before running the installer if you want auto-detection.
 - The installer writes /etc/asound.conf automatically if a USB DAC is found.
 - If no DAC is detected, you can configure ALSA later.
 
