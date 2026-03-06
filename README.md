@@ -30,7 +30,7 @@ Instructions for the install.
 ## Requirements
 	- Raspberry Pi OS 64-bit
 	- Raspberry Pi 4 or 5
-	- USB DAC (tested with SMSL D1 (usb c)
+	- USB DAC (tested with SMSL D1 (usb c))
 	- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
 	- Internet access during install
 ---------------
@@ -77,12 +77,18 @@ On a fresh Pi:
 - Sign into Plex once
 
 
-## Install
-```bash
+## Option 1: Raw Installer
+
 curl -sL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
+sudo reboot
+
+
+## Option 2: clone the repo:
+```bash
+git clone https://github.com/Satya121999/plexamp-raspberry-pi-install.git
 cd plexamp-raspberry-pi-install
 chmod +x install-plexamp-appliance.sh
 sudo ./install-plexamp-appliance.sh
-
 sudo reboot
+
 
