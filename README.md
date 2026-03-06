@@ -1,13 +1,7 @@
-# plexamp-raspberry-pi-install
-Full Plexamp installation on Raspberry Pi with Raspberry Pi OS 64-bit desktop and kiosk mode.
-
-
 # Plexamp Raspberry Pi Appliance
-
   Turn a Raspberry Pi into a dedicated Plexamp music streamer.
 
 Features:
-
   - Raspberry Pi OS 64-bit
   - Plexamp backend
   - Chromium kiosk interface
@@ -22,25 +16,64 @@ Boot flow:
   → Plexamp service starts  
   → Chromium kiosk launches  
   → Plexamp UI appears  
-
-Compatible hardware:
-- Raspberry Pi 4 / 5
-- USB DAC (tested with SMSL D1 (usb c)
-- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
-
 ---
 
-Here is a single install script that sets up:
-	•	Raspberry Pi OS 64-bit
-	•	Plexamp backend
-	•	systemd service
-	•	USB DAC default output
-	•	Chromium kiosk
-	•	persistent Plex login
-	•	desktop autologin
-	•	kiosk watchdog
-	•	Avahi .local
-	•	USB autosuspend disabled
+Instructions for the install. 
+
+- Plexamp backend
+	- Chromium kiosk UI
+	- USB DAC auto-detection
+	- persistent Plex login
+	- Avahi `.local` access
+	- desktop autologin
+	- kiosk watchdog
+	- USB autosuspend disabled
+
+## Requirements
+	- Raspberry Pi OS 64-bit
+	- Raspberry Pi 4 or 5
+	- USB DAC (tested with SMSL D1 (usb c)
+	- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
+	- Internet access during install
+
+## Install
+```bash
+git clone https://github.com/YOURNAME/plexamp-pi-appliance.git
+cd plexamp-pi-appliance
+chmod +x install-plexamp-appliance.sh
+sudo ./install-plexamp-appliance.sh
+
+sudo reboot
+
+---------------
+First boot
+
+On first boot:
+	1.	Chromium opens Plexamp automatically
+	2.	Sign into Plex once
+	3.	Your session persists for future boots
+
+Access:
+ssh pi@PlexPie.local
+http://PlexPie.local:32500
+
+Notes
+	•	Plug in your USB DAC before running the installer if you want auto-detection.
+	•	The installer writes /etc/asound.conf automatically if a USB DAC is found.
+	•	If no DAC is detected, you can configure ALSA later.
+
+What the installer does
+	•	updates the OS
+	•	installs dependencies
+	•	installs Plexamp
+	•	creates plexamp.service
+	•	detects USB DAC
+	•	sets up Chromium kiosk
+	•	enables desktop autologin
+	•	disables USB autosuspend
+
+
+Additional Notes:
 
 What this script does not do automatically
   It does not do the Plex claim/login step, because that still needs your Plex account session once on first launch.
@@ -57,6 +90,3 @@ Best install order
     	4.	Reboot
     	5.	Sign into Plex once
 
-
-Instructions for the Pi:
- 
