@@ -77,11 +77,12 @@ On a fresh Pi:
 - Sign into Plex once
 
 
-## Option 1: Raw Installer
+Installation Options:
 
+```bash
+## Option 1: Raw Installer
 curl -sL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
 sudo reboot
-
 
 ## Option 2: clone the repo:
 ```bash
