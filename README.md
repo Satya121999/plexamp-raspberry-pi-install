@@ -36,46 +36,47 @@ Instructions for the install.
 	- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
 	- Internet access during install
 ---------------
-First boot
-	On first boot:
-	1.	Chromium opens Plexamp automatically
-	2.	Sign into Plex once
-	3.	Your session persists for future boots
+First boot:
+
+On first boot:
+- Chromium opens Plexamp automatically
+- Sign into Plex once
+- Your session persists for future boots
 
 Access:
-	ssh pi@PlexPie.local
-	http://PlexPie.local:32500
+- ssh pi@PlexPie.local
+- http://PlexPie.local:32500
 
 Notes
-	•	Plug in your USB DAC before running the installer if you want auto-detection.
-	•	The installer writes /etc/asound.conf automatically if a USB DAC is found.
-	•	If no DAC is detected, you can configure ALSA later.
+- Plug in your USB DAC before running the installer if you want auto-detection.
+- The installer writes /etc/asound.conf automatically if a USB DAC is found.
+- If no DAC is detected, you can configure ALSA later.
 
 What the installer does
-	•	updates the OS
-	•	installs dependencies
-	•	installs Plexamp
-	•	creates plexamp.service
-	•	detects USB DAC
-	•	sets up Chromium kiosk
-	•	enables desktop autologin
-	•	disables USB autosuspend
+- updates the OS
+- installs dependencies
+- installs Plexamp
+- creates plexamp.service
+- detects USB DAC
+- sets up Chromium kiosk
+- enables desktop autologin
+- disables USB autosuspend
 
 
 Additional Notes:
 What this script does not do automatically:
-  It does not do the Plex claim/login step, because that still needs your Plex account session once on first launch.
-  So after reboot:
-    	1.	Plexamp opens in kiosk
-    	2.	You sign into Plex once
-    	3.	It stays signed in because Chromium uses a persistent profile
+It does not do the Plex claim/login step, because that still needs your Plex account session once on first launch.
+So after reboot:
+- Plexamp opens in kiosk
+- You sign into Plex once
+- It stays signed in because Chromium uses a persistent profile
 Best install order
-  On a fresh Pi:
-    	1.	Plug in USB DAC first
-    	2.	Boot Pi OS 64-bit
-    	3.	Run the script
-    	4.	Reboot
-    	5.	Sign into Plex once
+On a fresh Pi:
+- Plug in USB DAC first
+- Boot Pi OS 64-bit
+- Run the script
+- Reboot
+- Sign into Plex once
 
 
 ## Install
