@@ -35,16 +35,6 @@ Instructions for the install.
 	- USB DAC (tested with SMSL D1 (usb c)
 	- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
 	- Internet access during install
-
-## Install
-```bash
-git clone https://github.com/YOURNAME/plexamp-pi-appliance.git
-cd plexamp-pi-appliance
-chmod +x install-plexamp-appliance.sh
-sudo ./install-plexamp-appliance.sh
-
-sudo reboot
-
 ---------------
 First boot
 
@@ -89,4 +79,14 @@ Best install order
     	3.	Run the script
     	4.	Reboot
     	5.	Sign into Plex once
+
+
+## Install
+```bash
+git clone https://github.com/YOURNAME/plexamp-pi-appliance.git
+cd plexamp-pi-appliance
+chmod +x install-plexamp-appliance.sh
+sudo ./install-plexamp-appliance.sh
+
+sudo reboot
 
