@@ -83,7 +83,7 @@ Best install order
 
 ## Install
 ```bash
-git clone https://github.com/YOURNAME/plexamp-pi-appliance.git
+git clone https://github.com/Satya121999/plexamp-raspberry-pi-install.git
 cd plexamp-pi-appliance
 chmod +x install-plexamp-appliance.sh
 sudo ./install-plexamp-appliance.sh
