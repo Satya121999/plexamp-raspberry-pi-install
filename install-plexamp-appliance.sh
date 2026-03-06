@@ -49,6 +49,7 @@ echo "Installing Plexamp..."
 mkdir -p "${PLEXAMP_DIR}"
 chown "${USER_NAME}:${USER_NAME}" "${PLEXAMP_DIR}"
 if [[ ! -f "${PLEXAMP_DIR}/js/index.js" ]]; then
+  rm -rf "${PLEXAMP_DIR:?}"/*
   sudo -u "${USER_NAME}" bash -c "
     cd '${PLEXAMP_DIR}'
     curl -fsSL https://plexamp.plex.tv/headless/latest | tar -xJ --strip-components=1
@@ -83,7 +84,7 @@ systemctl daemon-reload
 systemctl enable plexamp
 
 echo "Detecting USB DAC..."
-DAC_NAME="$(aplay -l | awk -F'[][]' '/USB/ {print $2; exit}' | awk '{print $1}')"
+DAC_NAME="$(aplay -l | awk -F'[][]' '/USB Audio/ {print $2; exit}' | awk '{print $1}')"
 
 if [[ -n "${DAC_NAME}" ]]; then
   echo "Detected USB DAC: ${DAC_NAME}"
