@@ -27,7 +27,7 @@ Instructions for the install.
 	- kiosk watchdog
 	- USB autosuspend disabled
 
-## Requirements
+Requirements
 	- Raspberry Pi OS 64-bit
 	- Raspberry Pi 4 or 5
 	- USB DAC (tested with SMSL D1 (usb c))
@@ -78,18 +78,15 @@ On a fresh Pi:
 
 
 Installation Options:
+## Option 1 — direct installer
+	curl -sL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
+	sudo reboot
 
-```bash
-## Option 1: Raw Installer
-curl -sL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
-sudo reboot
-
-## Option 2: clone the repo:
-```bash
-git clone https://github.com/Satya121999/plexamp-raspberry-pi-install.git
-cd plexamp-raspberry-pi-install
-chmod +x install-plexamp-appliance.sh
-sudo ./install-plexamp-appliance.sh
-sudo reboot
+## Option 2 - Clone the repo
+	git clone https://github.com/Satya121999/plexamp-raspberry-pi-install.git
+	cd plexamp-raspberry-pi-install
+	chmod +x install-plexamp-appliance.sh
+	sudo ./install-plexamp-appliance.sh
+	sudo reboot
 
 
