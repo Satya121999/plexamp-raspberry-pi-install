@@ -37,15 +37,14 @@ Instructions for the install.
 	- Internet access during install
 ---------------
 First boot
-
-On first boot:
+	On first boot:
 	1.	Chromium opens Plexamp automatically
 	2.	Sign into Plex once
 	3.	Your session persists for future boots
 
 Access:
-ssh pi@PlexPie.local
-http://PlexPie.local:32500
+	ssh pi@PlexPie.local
+	http://PlexPie.local:32500
 
 Notes
 	•	Plug in your USB DAC before running the installer if you want auto-detection.
@@ -64,14 +63,12 @@ What the installer does
 
 
 Additional Notes:
-
-What this script does not do automatically
+What this script does not do automatically:
   It does not do the Plex claim/login step, because that still needs your Plex account session once on first launch.
   So after reboot:
     	1.	Plexamp opens in kiosk
     	2.	You sign into Plex once
     	3.	It stays signed in because Chromium uses a persistent profile
-
 Best install order
   On a fresh Pi:
     	1.	Plug in USB DAC first
