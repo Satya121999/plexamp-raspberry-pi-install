@@ -31,8 +31,7 @@ apt install -y \
   avahi-daemon \
   xserver-xorg \
   x11-xserver-utils \
-  nodejs \
-  npm
+  nodejs
 
 echo "Enabling avahi..."
 systemctl enable --now avahi-daemon
@@ -40,14 +39,23 @@ systemctl enable --now avahi-daemon
 echo "Setting hostname..."
 hostnamectl set-hostname "${HOSTNAME_INPUT}"
 echo "${HOSTNAME_INPUT}" > /etc/hostname
+if grep -q '^127.0.1.1' /etc/hosts; then
+  sed -i "s/^127.0.1.1.*/127.0.1.1\t${HOSTNAME_INPUT}/" /etc/hosts
+else
+  echo -e "127.0.1.1\t${HOSTNAME_INPUT}" >> /etc/hosts
+fi
 
 echo "Installing Plexamp..."
 mkdir -p "${PLEXAMP_DIR}"
 chown "${USER_NAME}:${USER_NAME}" "${PLEXAMP_DIR}"
-sudo -u "${USER_NAME}" bash -c "
-  cd '${PLEXAMP_DIR}'
-  curl -L https://plexamp.plex.tv/headless/latest | tar -xJ --strip-components=1
-"
+if [[ ! -f "${PLEXAMP_DIR}/js/index.js" ]]; then
+  sudo -u "${USER_NAME}" bash -c "
+    cd '${PLEXAMP_DIR}'
+    curl -fsSL https://plexamp.plex.tv/headless/latest | tar -xJ --strip-components=1
+  "
+else
+  echo "Plexamp already installed, skipping download."
+fi
 
 echo "Creating Plexamp service..."
 cat >/etc/systemd/system/plexamp.service <<EOF
@@ -75,55 +83,62 @@ systemctl daemon-reload
 systemctl enable plexamp
 
 echo "Detecting USB DAC..."
-DAC_CARD="$(aplay -l | awk -F'[: ]+' '/USB/ && !/HDMI/ {print $4; exit}')"
+DAC_NAME="$(aplay -l | awk -F'[][]' '/USB/ {print $2; exit}' | awk '{print $1}')"
 
-if [[ -n "${DAC_CARD}" ]]; then
-  echo "Detected DAC card: ${DAC_CARD}"
-  cat >/etc/asound.conf <<EOF
+if [[ -n "${DAC_NAME}" ]]; then
+  echo "Detected USB DAC: ${DAC_NAME}"
+
+cat >/etc/asound.conf <<EOF
 pcm.!default {
     type plug
-    slave.pcm "plughw:${DAC_CARD},0"
+    slave.pcm "plughw:CARD=${DAC_NAME},DEV=0"
 }
 
 ctl.!default {
     type hw
-    card ${DAC_CARD}
+    card ${DAC_NAME}
 }
 EOF
+
 else
-  echo "No USB DAC detected right now. You can configure /etc/asound.conf later."
+  echo "No USB DAC detected. Using system default audio."
 fi
 
 echo "Creating kiosk scripts..."
 mkdir -p "${KIOSK_BIN_DIR}"
 chown -R "${USER_NAME}:${USER_NAME}" "${KIOSK_BIN_DIR}"
 mkdir -p "${KIOSK_PROFILE}"
-chown -R "${USER_NAME}:${USER_NAME}" "/home/${USER_NAME}/.config"
+chown -R "${USER_NAME}:${USER_NAME}" "${KIOSK_PROFILE}"
 
 cat >"${KIOSK_BIN_DIR}/kiosk.sh" <<EOF
 #!/bin/bash
+set -euo pipefail
 
-until curl -s http://127.0.0.1:32500 > /dev/null; do
+until curl -fsS http://127.0.0.1:32500 > /dev/null; do
     sleep 0.5
 done
 
-exec chromium \\
-  --kiosk \\
-  --noerrdialogs \\
-  --disable-infobars \\
-  --disable-session-crashed-bubble \\
-  --no-first-run \\
-  --password-store=basic \\
-  --use-mock-keychain \\
-  --disable-gpu \\
-  --user-data-dir=${KIOSK_PROFILE} \\
+exec chromium \
+  --kiosk \
+  --noerrdialogs \
+  --disable-infobars \
+  --disable-session-crashed-bubble \
+  --no-first-run \
+  --password-store=basic \
+  --use-mock-keychain \
+  --disable-gpu \
+  --user-data-dir=${KIOSK_PROFILE} \
   http://127.0.0.1:32500
 EOF
 
 cat >"${KIOSK_BIN_DIR}/kiosk-watchdog.sh" <<EOF
 #!/bin/bash
+set -euo pipefail
+
 while true; do
-  if ! curl -s --max-time 2 http://127.0.0.1:32500 > /dev/null; then
+  if ! pgrep -x chromium >/dev/null; then
+    ${KIOSK_BIN_DIR}/kiosk.sh &
+  elif ! curl -fsS --max-time 2 http://127.0.0.1:32500 > /dev/null; then
     pkill chromium || true
     ${KIOSK_BIN_DIR}/kiosk.sh &
   fi
