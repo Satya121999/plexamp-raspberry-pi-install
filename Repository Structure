@@ -1,0 +1,20 @@
+plexamp-pi-appliance
+│
+├── README.md
+├── install.sh
+├── uninstall.sh
+│
+├── systemd
+│   └── plexamp.service
+│
+├── kiosk
+│   ├── kiosk.sh
+│   └── kiosk-watchdog.sh
+│
+├── config
+│   └── autostart
+│
+└── docs
+    ├── hardware.md
+    ├── troubleshooting.md
+    └── architecture.md
