@@ -79,7 +79,7 @@ On a fresh Pi:
 
 Installation Options:
 ## Option 1 — direct installer
-	curl -sL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
+	curl -fsSL https://raw.githubusercontent.com/Satya121999/plexamp-raspberry-pi-install/main/install-plexamp-appliance.sh | sudo bash
 	sudo reboot
 
 ## Option 2 - Clone the repo
