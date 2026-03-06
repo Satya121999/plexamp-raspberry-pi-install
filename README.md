@@ -30,7 +30,7 @@ Instructions for the install.
 Requirements
 	- Raspberry Pi OS 64-bit
 	- Raspberry Pi 4 or 5
-	- USB DAC (tested with SMSL D1 (usb c))
+	- USB DAC - tested with SMSL D1 (usb c)
 	- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
 	- Internet access during install
 ---------------
