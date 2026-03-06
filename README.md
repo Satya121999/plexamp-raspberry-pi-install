@@ -4,83 +4,59 @@ Full Plexamp installation on Raspberry Pi with Raspberry Pi OS 64-bit desktop an
 
 # Plexamp Raspberry Pi Appliance
 
-Turn a Raspberry Pi into a dedicated Plexamp music streamer.
+  Turn a Raspberry Pi into a dedicated Plexamp music streamer.
 
 Features:
 
-- Raspberry Pi OS 64-bit
-- Plexamp backend
-- Chromium kiosk interface
-- USB DAC support
-- Automatic Plex login persistence
-- Auto-restart watchdog
-- Appliance-style boot
-- Control from phone/tablet
+  - Raspberry Pi OS 64-bit
+  - Plexamp backend
+  - Chromium kiosk interface
+  - USB DAC support
+  - Automatic Plex login persistence
+  - Auto-restart watchdog
+  - Appliance-style boot
+  - Control from phone/tablet
 
 Boot flow:
-
-Pi Boot  
-→ Plexamp service starts  
-→ Chromium kiosk launches  
-→ Plexamp UI appears  
+  Pi Boot  
+  → Plexamp service starts  
+  → Chromium kiosk launches  
+  → Plexamp UI appears  
 
 Compatible hardware:
-
 - Raspberry Pi 4 / 5
-- USB DAC (tested with SMSL)
-- HDMI display (optional)
+- USB DAC (tested with SMSL D1 (usb c)
+- HDMI display (optional) - tested with a $35 dollar screen from Amazon.
 
 ---
 
-## Installation
+Here is a single install script that sets up:
+	•	Raspberry Pi OS 64-bit
+	•	Plexamp backend
+	•	systemd service
+	•	USB DAC default output
+	•	Chromium kiosk
+	•	persistent Plex login
+	•	desktop autologin
+	•	kiosk watchdog
+	•	Avahi .local
+	•	USB autosuspend disabled
 
-Flash Raspberry Pi OS (64-bit).
+What this script does not do automatically
+  It does not do the Plex claim/login step, because that still needs your Plex account session once on first launch.
+  So after reboot:
+    	1.	Plexamp opens in kiosk
+    	2.	You sign into Plex once
+    	3.	It stays signed in because Chromium uses a persistent profile
 
-Then run:
-git clone https://github.com/YOURNAME/plexamp-pi-appliance.git
-cd plexamp-pi-appliance
-chmod +x install.sh
-sudo ./install.sh
+Best install order
+  On a fresh Pi:
+    	1.	Plug in USB DAC first
+    	2.	Boot Pi OS 64-bit
+    	3.	Run the script
+    	4.	Reboot
+    	5.	Sign into Plex once
 
-Reboot after install.
 
----
-
-## First Launch
-
-After reboot:
-
-1. Plexamp will open automatically
-2. Sign into Plex once
-3. Choose your music library
-
-The session will persist for future boots.
-
----
-
-## Access
-
-SSH into your pi using ssh@<username>@<hostname.local>
-
-Plexamp UI: 
-http://<hostname of your pi>.local:32500
-
----
-
-## Hardware Tested
-
-- Raspberry Pi 4
-- SMSL USB DAC
-- Raspberry Pi 7" display
-- Ethernet + WiFi
-
----
-
-## Optional Features
-
-- Screen sleep/wake automation
-- DAC auto-detection
-- Static network configuration
-
-See `/docs`.
-
+Instructions for the Pi:
+ 
