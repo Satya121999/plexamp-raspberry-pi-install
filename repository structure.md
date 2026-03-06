@@ -1,4 +1,4 @@
-REPOSITIORY STRUCTURE
+**REPOSITIORY STRUCTURE
 
 plexamp-raspberry-pi-install/
 ├── README.md
